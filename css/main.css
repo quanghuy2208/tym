@@ -189,31 +189,32 @@ img {
 }
 
 .buttons {
-  position: relative; /* Bắt buộc để nút No di chuyển trong khung này */
-  margin-top: 30px;
-  text-align: center;
-  height: 100px; /* Cho đủ không gian để trốn */
-}
+    position: relative; /* để nút con có thể dùng absolute */
+    height: 120px;
+    margin-top: 30px;
+    text-align: center;
+  }
 
-button {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 25px;
-  background-color: #ff5e78;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #ff5e78;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-button:hover {
-  background-color: #ff2e58;
-}
+  button:hover {
+    background-color: #ff2e58;
+  }
 
-#noButton {
-  position: absolute; /* Bắt buộc để di chuyển */
-  left: 50%;
-  transform: translateX(-50%);
-}
+  #noButton {
+    position: absolute; /* để có thể dịch chuyển */
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
