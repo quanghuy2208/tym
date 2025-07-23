@@ -187,4 +187,20 @@ function createCanvas(properties) {
   };
 }
 
+ const noButton = document.getElementById('noButton');
+
+  noButton.addEventListener('mouseenter', () => {
+    const container = document.querySelector('.buttons');
+    const containerRect = container.getBoundingClientRect();
+    const maxX = container.clientWidth - noButton.offsetWidth;
+    const maxY = container.clientHeight - noButton.offsetHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noButton.style.position = 'absolute';
+    noButton.style.left = `${randomX}px`;
+    noButton.style.top = `${randomY}px`;
+  });
+
 update();
