@@ -1,123 +1,139 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/main.css" rel="stylesheet" />
+    <style>
+      .buttons {
+        position: relative;
+        height: 120px;
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      button {
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        border-radius: 25px;
+        background-color: #ff5e78;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #ff2e58;
+      }
+
+      #noButton {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <!-- <audio autoplay="autopaly">
+    <!-- <audio autoplay>
       <source src="renxi.mp3" type="audio/mp3" />
     </audio> -->
-    <!-- 星空html -->
-    <!-- <div> -->
+
     <div class="container2">
       <div class="content">
         <canvas id="universe"></canvas>
       </div>
     </div>
-    <!-- </div> -->
+
     <div class="title">
-      <!-- EDIT HERE -->
       <h3 class="STARDUST1">2025</h3>
       <h1 class="STARDUST2">Làm người yêu anh nhé</h1>
       <h3 class="STARDUST3">L O V E <strong>❤</strong> Y O U</h3>
       <img class="img" src="EDIT_ME.png" alt="JUNO_OKYO" />
       <canvas id="pinkboard"></canvas>
+
       <div class="buttons">
-  <button id="yesButton">Đồng ý</button>
-  <button id="noButton">Không đồng ý</button>
-</div>
+        <button id="yesButton">Đồng ý</button>
+        <button id="noButton">Không đồng ý</button>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/particle.js"></script>
     <script src="js/universe.js"></script>
+
     <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const noButton = document.getElementById('noButton');
-      const container = document.querySelector('.buttons');
+      window.addEventListener("DOMContentLoaded", () => {
+        const noButton = document.getElementById("noButton");
+        const yesButton = document.getElementById("yesButton");
+        const container = document.querySelector(".buttons");
 
-      noButton.addEventListener('mouseenter', () => {
-        const maxX = container.clientWidth - noButton.offsetWidth;
-        const maxY = container.clientHeight - noButton.offsetHeight;
+        // Nút "Không đồng ý" chạy trốn
+        noButton.addEventListener("mouseenter", () => {
+          const maxX = container.clientWidth - noButton.offsetWidth;
+          const maxY = container.clientHeight - noButton.offsetHeight;
 
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
+          const randomX = Math.floor(Math.random() * maxX);
+          const randomY = Math.floor(Math.random() * maxY);
 
-        noButton.style.left = `${randomX}px`;
-        noButton.style.top = `${randomY}px`;
+          noButton.style.left = `${randomX}px`;
+          noButton.style.top = `${randomY}px`;
+        });
+
+        // Nút "Đồng ý" hiển thị popup + hiệu ứng trái tim
+        yesButton.addEventListener("click", () => {
+          showLovePopup();
+          createHeartRain();
+        });
+
+        function showLovePopup() {
+          const popup = document.createElement("div");
+          popup.innerHTML = `
+            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                        background: rgba(255,255,255,0.95); padding: 30px 40px; border-radius: 20px;
+                        box-shadow: 0 0 20px rgba(0,0,0,0.2); font-size: 20px; text-align: center;
+                        z-index: 9999; font-family: 'Montserrat', sans-serif;">
+              💖 Anh biết em sẽ đồng ý mà! <br><br>
+              Cảm ơn em vì đã bước vào cuộc đời anh! 🌸<br><br>
+              <strong>Yêu em nhiều lắm!</strong>
+            </div>
+          `;
+          document.body.appendChild(popup);
+        }
+
+        function createHeartRain() {
+          for (let i = 0; i < 30; i++) {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.style.position = "fixed";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = "-50px";
+            heart.style.fontSize = Math.random() * 24 + 24 + "px";
+            heart.style.opacity = Math.random();
+            heart.style.animation = `fall ${3 + Math.random() * 2}s linear infinite`;
+            document.body.appendChild(heart);
+          }
+        }
       });
-    });
-  </script>
-  <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const noButton = document.getElementById('noButton');
-    const yesButton = document.getElementById('yesButton');
-    const container = document.querySelector('.buttons');
-
-    noButton.addEventListener('mouseenter', () => {
-      const maxX = container.clientWidth - noButton.offsetWidth;
-      const maxY = container.clientHeight - noButton.offsetHeight;
-
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-
-      noButton.style.left = `${randomX}px`;
-      noButton.style.top = `${randomY}px`;
-    });
-
-    // Hiệu ứng khi bấm "Đồng ý"
-    yesButton.addEventListener('click', () => {
-      showLovePopup();
-      createHeartRain();
-    });
-
-    function showLovePopup() {
-      const popup = document.createElement('div');
-      popup.innerHTML = `
-        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                    background: rgba(255,255,255,0.95); padding: 30px 40px; border-radius: 20px;
-                    box-shadow: 0 0 20px rgba(0,0,0,0.2); font-size: 20px; text-align: center;
-                    z-index: 9999; font-family: 'Montserrat', sans-serif;">
-          💖 Anh biết em sẽ đồng ý mà! <br><br>
-          Cảm ơn em vì đã bước vào cuộc đời anh! 🌸<br><br>
-          <strong>Yêu em nhiều lắm!</strong>
-        </div>
-      `;
-      document.body.appendChild(popup);
-    }
-
-    function createHeartRain() {
-      for (let i = 0; i < 30; i++) {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤️';
-        heart.style.position = 'fixed';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.top = '-50px';
-        heart.style.fontSize = Math.random() * 24 + 24 + 'px';
-        heart.style.opacity = Math.random();
-        heart.style.animation = `fall ${3 + Math.random() * 2}s linear infinite`;
-        document.body.appendChild(heart);
-      }
-    }
-  });
-
-  // CSS Animation
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @keyframes fall {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(110vh); }
-    }
-  `;
-  document.head.appendChild(style);
-</script>
-
+    </script>
   </body>
-  
 </html>
