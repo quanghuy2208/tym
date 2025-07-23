@@ -187,9 +187,12 @@ img {
   mask-border: var(--_m);
   clip-path: polygon(-41% 0, 50% 91%, 141% 0);
 }
+
 .buttons {
-  margin-top: 20px;
+  position: relative; /* Bắt buộc để nút No di chuyển trong khung này */
+  margin-top: 30px;
   text-align: center;
+  height: 100px; /* Cho đủ không gian để trốn */
 }
 
 button {
@@ -210,5 +213,7 @@ button:hover {
 }
 
 #noButton {
-  position: relative;
+  position: absolute; /* Bắt buộc để di chuyển */
+  left: 50%;
+  transform: translateX(-50%);
 }
